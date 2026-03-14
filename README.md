@@ -107,14 +107,14 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 **Screenshots**:
 ![Plex Media](Screenshots/Plex%20Media.png)
 
-#### 🎬 Jellyfin
-**Description**: Free and open-source media server that puts you in control of your media. Stream to your devices, no subscriptions, no fees.
-- Personal media library management
-- Multi-device streaming
-- Client apps for all platforms
-- Customizable interface and plugins
+#### 🎬 Jellyseer (Seer)
+**Description**: Universal media discovery and indexer manager for movies and TV shows. Automatically finds and adds content to your media libraries.
+- Unified interface for Sonarr and Radarr
+- Content discovery and recommendations
+- Automatic download management
+- Watchlist integration with multiple services
 
-**Documentation**: [Jellyfin Docs](https://docs.jellyfin.org/)
+**Documentation**: [Jellyseer Docs](https://jellyseer.cc/)
 
 **Screenshots**:
 ![Jellyfin](Screenshots/Jelly%20Media.png)
