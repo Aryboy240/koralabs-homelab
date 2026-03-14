@@ -1,0 +1,135 @@
+# This is where the servarrnetwork is defined, thius allowing all containers to communicate with each other using their aliases.
+# I use this specifically with NPM, so that I can use the aliases as proxy hosts internally, and not have to worry about IP addresses changing.
+
+networks:
+  servarrnetwork:
+    name: servarrnetwork
+    ipam:
+      config:
+        - subnet: 172.39.0.0/24
+
+# Pulling and cofiguring the services, this is where you will add your media servers, and other related services. I have included some of the most popular ones, but feel free to add any others you may need.
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - WEBUI_PORT=8082
+    volumes:
+      - ./qbittorrent:/config
+      # - D:/Servers/Dockers/media/data:/data - This is my set location (change this to yours)
+    ports:
+      - "8082:8082"
+      - "6881:6881"
+      - "6881:6881/udp"
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - qbittorrent
+
+  deunhealth:
+    image: qmcgaw/deunhealth
+    container_name: deunhealth
+    network_mode: "none"
+    environment:
+      - LOG_LEVEL=info
+      - HEALTH_SERVER_ADDRESS=127.0.0.1:9999
+      - TZ=${TZ}
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./prowlarr:/config
+    ports:
+      - "9696:9696"
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - prowlarr
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ}
+    ports:
+      - "8191:8191"
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - flaresolverr
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./sonarr:/config
+      # - D:/Servers/Dockers/media/data:/data - This is my set location (change this to yours)
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - sonarr
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./radarr:/config
+      # - D:/Servers/Dockers/media/data:/data - This is my set location (change this to yours)
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - radarr
+
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: seerr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./seerr:/app/config
+    ports:
+      - 5055:5055
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      servarrnetwork:
+        aliases:
+          - seerr

@@ -1,0 +1,24 @@
+networks:
+  servarrnetwork:
+    external: true
+
+# I reommend that you JUST pull the web-ui to docker and have it point to ollama running on the host if you have an AMD GPU, its easier to get it working 
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.6.1
+    container_name: open-webui
+    restart: unless-stopped
+    volumes:
+      - open-webui:/app/backend/data
+    extra_hosts:
+      - "host-gateway:host-gateway"
+    environment:
+      - 'OLLAMA_BASE_URL=http://host-gateway:11434' # This points to the ollama server running on the host, if you have an AMD GPU you should use this method as its easier to get working
+    networks:
+      servarrnetwork:
+        aliases:
+          - open-webui
+
+volumes:
+  open-webui: {}

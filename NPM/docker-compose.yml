@@ -1,0 +1,31 @@
+networks:
+  servarrnetwork:
+    external: true
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"     # HTTP
+      - "81:81"     # NPM Admin UI
+      - "443:443"   # HTTPS
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      servarrnetwork:
+        aliases:
+          - npm
+
+  # This way if your IP channges, clouflare-ddns will update the IP address for your domain and NPM will continue to work without you having to do anything
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    restart: unless-stopped
+    environment:
+      - API_KEY= # Set this to your Cloudflare API key (found in your Cloudflare account settings)
+      - ZONE= # Set this to your Cloudflare zone ID
+      - SUBDOMAIN= # Set this to your subdomain
+      - PROXIED=true
