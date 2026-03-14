@@ -10,7 +10,7 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 - Automatic SSL certificate generation and renewal via Let's Encrypt
 - DNS-based routing for multiple domains
 
-**Documentation**: [Nginx Proxy Manager Docs](https://nginxproxymanager.dev/docs/)
+**Documentation**: [Nginx Proxy Manager Docs](https://nginxproxymanager.com/guide/)
 
 **Screenshots**:
 ![NPM Proxy Hosts](Screenshots/NPM%20Proxy%20Hosts.png)
@@ -93,56 +93,96 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 
 ---
 
-## 🚀 Quick Start
+### 📺 Media Servers
 
-Each service has its own `docker-compose.yml` file in its respective directory.
+#### 🎬 Plex
+**Description**: Popular media server that organizes and streams your personal video, music, and photo collections.
+- Personalized media library management
+- Multi-device streaming (TV, mobile, desktop)
+- Access anywhere with Plex features
+- Watchlist and progress tracking
 
-### Initialize the Network
-```bash
-docker network create servarrnetwork
-```
+**Documentation**: [Plex Docs](https://support.plex.tv/articles/servers/)
 
-### Start a Service
-Navigate to the service directory and run:
-```bash
-cd /path/to/service
-docker compose up -d
-```
+**Screenshots**:
+![Plex Media](Screenshots/Plex%20Media.png)
 
-### Stop a Service
-```bash
-cd /path/to/service
-docker compose down
-```
+#### 🎬 Jellyfin
+**Description**: Free and open-source media server that puts you in control of your media. Stream to your devices, no subscriptions, no fees.
+- Personal media library management
+- Multi-device streaming
+- Client apps for all platforms
+- Customizable interface and plugins
 
-## 📁 Directory Structure
-```
-homelab/
-├── Immich/
-│   ├── docker-compose.yml
-│   └── .env
-├── n8n/
-│   ├── docker-compose.yml
-│   └── .env
-├── Nextcloud/
-│   └── docker-compose.yml
-├── NPM/
-│   ├── docker-compose.yml
-│   └── .env
-├── Pihole/
-│   └── docker-compose.yml
-├── ollama-webui/
-│   └── docker-compose.yml
-├── Screenshots/
-│   └── *.png
-└── README.md
-```
+**Documentation**: [Jellyfin Docs](https://docs.jellyfin.org/)
+
+**Screenshots**:
+![Jellyfin](Screenshots/Jelly%20Media.png)
+
+---
+
+### 📥 Media Management
+
+#### 📡 Sonarr
+**Description**: Automatically downloads and manages TV shows. Sonarr keeps track of what you have, what you want, and which ones you're missing.
+- Automatic download of TV series
+- Watchlist integration
+- Episode naming and organization
+- Customization options
+
+**Documentation**: [Sonarr Docs](https://wiki.servarr.com/sonarr/)
+
+#### 🎥 Radarr
+**Description**: Automatically downloads and manages movies. Radarr keeps track of what you have, what you want, and which ones you're missing.
+- Automatic movie downloads
+- Quality selection and profile management
+- Movie organization
+- Integration with downloaders
+
+**Documentation**: [Radarr Docs](https://wiki.servarr.com/radarr/)
+
+#### ⬇️ Qbittorrent
+**Description**: Featureful BitTorrent client with a clean, modern interface.
+- Powerful search and filtering
+- Customizable UI themes
+- RSS feed support
+- DHT, PEX, and magnet link support
+
+**Documentation**: [qBittorrent Documentation](https://www.qbittorrent.org/documentation.php)
+
+#### 🔍 Prowlarr
+**Description**: Indexer manager for torrents, NZBs, videos, audio books, etc. that can help you find the indices of your favorite content.
+- Multiple indexer support
+- Unified API for all indexers
+- Automatic search and download management
+- RSS feed integration
+
+**Documentation**: [Prowlarr Wiki](https://wiki.servarr.com/prowlarr/)
+
+#### ⚡ FlareSolverr
+**Description**: Cloudflare Bypass tool used by services like Sonarr and Radarr to bypass Cloudflare protection and fetch content from blocked sites.
+- Cloudflare bypass for various services
+- API-based access
+- No external dependencies
+- Easy integration with media managers
+
+**Documentation**: [FlareSolverr Documentation](https://flaresolverr.org/)
+
+#### 🔎 Seerr
+**Description**: Automatic media discovery and recommendations. Seerr allows you to automatically request new content via Sonarr, Radarr, and Prowlarr.
+- Automatic media requests
+- Quality-based recommendations
+- Integration with media managers
+- Watchlist support
+
+**Documentation**: [Seerr Documentation](https://docs.seerr.dev/)
+
+---
 
 ## 🔗 Useful Links
 
 - [Docker Documentation](https://docs.docker.com/)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
-- [Selfhosted.info](https://selfhosted.info/)
 
 ## 📝 Notes
 
