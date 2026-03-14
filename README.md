@@ -102,7 +102,7 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 - Access anywhere with Plex features
 - Watchlist and progress tracking
 
-**Documentation**: [Plex Docs](https://support.plex.tv/articles/servers/)
+**Documentation**: [Plex Docs](https://support.plex.tv/articles/)
 
 **Screenshots**:
 ![Plex Media](Screenshots/Plex%20Media.png)
@@ -114,7 +114,7 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 - Automatic download management
 - Watchlist integration with multiple services
 
-**Documentation**: [Jellyseer Docs](https://jellyseer.cc/)
+**Documentation**: [Jellyseer Docs](https://docs.seerr.dev/)
 
 **Screenshots**:
 ![Jellyfin](Screenshots/Jelly%20Media.png)
@@ -148,7 +148,7 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 - RSS feed support
 - DHT, PEX, and magnet link support
 
-**Documentation**: [qBittorrent Documentation](https://www.qbittorrent.org/documentation.php)
+**Documentation**: [qBittorrent Documentation](https://github.com/qbittorrent/qBittorrent/wiki)
 
 #### 🔍 Prowlarr
 **Description**: Indexer manager for torrents, NZBs, videos, audio books, etc. that can help you find the indices of your favorite content.
@@ -166,7 +166,7 @@ Welcome to my personal homelab infrastructure! This repository contains the conf
 - No external dependencies
 - Easy integration with media managers
 
-**Documentation**: [FlareSolverr Documentation](https://flaresolverr.org/)
+**GitHub**: [FlareSolverr GitHub](https://github.com/FlareSolverr/FlareSolverr)
 
 #### 🔎 Seerr
 **Description**: Automatic media discovery and recommendations. Seerr allows you to automatically request new content via Sonarr, Radarr, and Prowlarr.
