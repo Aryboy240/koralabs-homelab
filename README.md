@@ -1,4 +1,4 @@
-# 🏠 Kora Labs Homelab
+# 🏠 KoraLabs
 
 Welcome to my personal homelab infrastructure! This repository contains the configuration files and documentation for all my self-hosted services running in Docker containers.
 
